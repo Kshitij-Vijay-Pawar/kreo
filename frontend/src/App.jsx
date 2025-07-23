@@ -6,10 +6,17 @@ import Category2 from './components/Category/Category2';
 import Services from './components/Services/Services';
 import Banner from './components/Banner/Banner';
 import Products from './components/Products/Products';
+import Blogs from './components/Blogs/Blogs';
+
+
 
 
 import headphone from "./assets/hero/headphone.png";
 import smartwatch2 from "./assets/category/smartwatch2-removebg-preview.png";
+
+import Partners from './components/Partners/Partners';
+import Footer from './components/Footer/Footer';
+import Popup from './components/Popup/Popup';
 
 const BannerData = {
   discount: "30% OFF",
@@ -37,17 +44,25 @@ const BannerData2 = {
 
 function App() {
 
+  const [orderPopup, setOrderPopup] = React.useState(false);
+  const handleOrderPopup = () => {
+    setOrderPopup(!orderPopup);
+  };
 
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden'>
-      <Navbar />
-      <Hero />
+      <Navbar handleOrderPopup={handleOrderPopup}/>
+      <Hero handleOrderPopup={handleOrderPopup}/>
       <Category />
       <Category2 />
       <Services />
       <Banner data={BannerData} />
       <Products />
       <Banner data={BannerData2} />
+      <Blogs />
+      <Partners />
+      <Footer />
+      <Popup orderPopup={orderPopup} handleOrderPopup={handleOrderPopup}/>
     </div>
   )
 }

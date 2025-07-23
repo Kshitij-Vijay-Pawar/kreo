@@ -5,7 +5,7 @@ import Image2 from "../../assets/category/vr.png"
 import Image3 from "../../assets/category/macbook.png"
 import Button from '../Shared/Button';
 
-const Hero = () => {
+const Hero = ({ handleOrderPopup}) => {
 
     const HeroData = [
         {
@@ -66,6 +66,7 @@ const Hero = () => {
                                                 text="Shop By Category"
                                                 bgColor="bg-primary"
                                                 textColor="text-white"
+                                                handler={handleOrderPopup}
                                             />
                                         </div>
                                     </div>
