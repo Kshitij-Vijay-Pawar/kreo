@@ -11,18 +11,21 @@ const BlogsData = [
     subtitle: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium sit repellat labore earum fuga corporis facere accusantium! Dolores reiciendis laborum, non, dolorem laboriosam in quidem perspiciatis eum ut quibusdam sed.",
     published: "Jan 20, 2024 by Dilshad",
     image: Img1,
+    aosDelay: "0",
   },
   {
     title: "How to choose perfect smartwatch",
     subtitle: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium sit repellat labore earum fuga corporis facere accusantium! Dolores reiciendis laborum, non, dolorem laboriosam in quidem perspiciatis eum ut quibusdam sed.",
     published: "Jan 20, 2024 by Dilshad",
     image: Img2,
+    aosDelay: "200",
   },
   {
     title: "How to choose perfect smartwatch",
     subtitle: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium sit repellat labore earum fuga corporis facere accusantium! Dolores reiciendis laborum, non, dolorem laboriosam in quidem perspiciatis eum ut quibusdam sed.",
     published: "Jan 20, 2024 by Dilshad",
     image: Img3,
+    aosDelay: "400",
   },
 ]
 
@@ -33,7 +36,12 @@ const Blogs = () => {
         <Heading title="Recent News" subtitle={"Explore Our Blogs"}/>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-8 sm:gap-4 md:gap-7">
           {BlogsData.map((data) => (
-            <div key={data.title} className='bg-white dark:bg-gray-900'>
+            <div 
+              data-aos="fade-up"
+              data-aos-delat={data.aosDelay}
+              key={data.title} 
+              className='bg-white dark:bg-gray-900'
+            >
               <div className='overflow-hidden rounded-2xl mb-2'>
                 <img src={data.image} alt="" className='w-full h-[220px] object-cover rounded-2xl hover:scale-105 duration-500'/>
               </div>

@@ -6,7 +6,11 @@ const ProductCard = ({ data }) => {
     <div className='mb-10'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 place-items-center'>
             {data.map((data) => (
-                <div key={data.id} className='group'>
+                <div 
+                    data-aos="fade-up"
+                    data-aos-delay={data.aosDelay}
+                    key={data.id} 
+                    className='group'>
                     <div className='relative'>
                         <img 
                             src={data.img} 
