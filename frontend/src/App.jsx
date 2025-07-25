@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router";
 import MainLayout from './MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
+import Profile from './pages/Profile';
+import Shop from "./pages/Shop"
+
 import Registration from './pages/Registration';
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -28,8 +31,9 @@ function App() {
         <MainLayout handleOrderPopup={handleOrderPopup} orderPopup={orderPopup} />
       }>
         <Route path="/" element={<Home handleOrderPopup={handleOrderPopup} />} />
-        <Route path="/home" element={<Home handleOrderPopup={handleOrderPopup} />} />
         <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/shop" element={<Shop />} />
       </Route>
       {/* Registration page does NOT use MainLayout */}
       <Route path="/registration" element={<Registration />} />

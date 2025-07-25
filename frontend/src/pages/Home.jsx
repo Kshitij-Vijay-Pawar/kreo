@@ -12,6 +12,8 @@ import Partners from '../components/Partners/Partners';
 import headphone from "../assets/hero/headphone.png";
 import smartwatch2 from "../assets/category/smartwatch2-removebg-preview.png";
 
+import Aurora from '../bites/auro';
+
 
 const BannerData = {
   discount: "30% OFF",
@@ -39,11 +41,22 @@ const BannerData2 = {
 
 
 
-const Home = ({handleOrderPopup}) => {
+const Home = ({ handleOrderPopup }) => {
 
   return (
-    <>
-      <Hero handleOrderPopup={handleOrderPopup}/>
+    <div className="w-full overflow-x-hidden overflow-y-hidden">
+
+      {/* Aurora as background */}
+      <div className='absolute inset-0 z-0'>
+        <Aurora
+          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+          blend={0.8}
+          amplitude={1.5}
+          speed={0.5}
+        />
+      </div>
+
+      <Hero handleOrderPopup={handleOrderPopup} />
       <Category />
       <Category2 />
       <Services />
@@ -52,7 +65,7 @@ const Home = ({handleOrderPopup}) => {
       <Banner data={BannerData2} />
       <Blogs />
       <Partners />
-    </>
+    </div>
   )
 }
 

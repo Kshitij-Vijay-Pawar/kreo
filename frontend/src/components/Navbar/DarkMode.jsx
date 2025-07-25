@@ -13,12 +13,22 @@ const DarkMode = () => {
 
     React.useEffect(() => {
         localStorage.setItem("theme", theme);
-        if(theme === "dark"){
+        if (theme === "dark") {
             element.classList.add("dark");
         } else {
             element.classList.remove("dark");
         }
     });
+
+    
+
+    (function () {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    })();
+
 
     return (
         <div className='relative'>

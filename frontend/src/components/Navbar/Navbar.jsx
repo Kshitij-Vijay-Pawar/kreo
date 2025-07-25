@@ -3,7 +3,14 @@ import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6"
 import { FaCaretDown } from "react-icons/fa6";
 import DarkMode from "./DarkMode"
+import { Link } from 'react-router';
 
+const user = {
+    fullName: 'Om Pawar',
+    username: 'ompawar_24',
+    email: 'ompawar@example.com',
+    profilePic: 'https://i.pravatar.cc/150?img=68', // Replace with your user's actual image
+};
 
 const MenuLinks = [
     {
@@ -19,7 +26,7 @@ const MenuLinks = [
     {
         id: 3,
         name: 'About',
-        link: "/#",
+        link: "/about",
     },
     {
         id: 4,
@@ -46,65 +53,104 @@ const DropdownLinks = [
     },
 ]
 
-const Navbar = ({ handleOrderPopup}) => {
-  return (
-    <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40'>
-        <div className='py-4'>
-            <div className="container flex justify-between items-center">
-                <div className='flex items-center gap-4'>
-                    <a href="#" className='text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl'>Eshop</a>
-                    <div className='hidden lg:block'>
-                        <ul className='flex items-center gap-4'>
-                            {MenuLinks.map((data, index) => (
-                                <li key={data.id || index}>
-                                    <a href={data.link} className='inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200'>{" "}{data.name}</a>
+const Navbar = ({ handleOrderPopup }) => {
+    return (
+        <div className='bg-white dark:bg-gray-900/50 dark:text-white duration-200 relative z-40'>
+            <div className='py-4'>
+                <div className="container flex justify-between items-center">
+                    <div className='flex items-center gap-4'>
+                        <a href="#" className='text-primary font-semibold tracking-widest text-2xl uppercase sm:text-3xl'>Eshop</a>
+                        <div className='hidden lg:block'>
+                            <ul className='flex items-center gap-4'>
+                                {MenuLinks.map((data, index) => (
+                                    <li key={data.id || index}>
+                                        <Link to={data.link} className='inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200'>{" "}{data.name}</Link>
+                                    </li>
+                                ))}
+                                {/* dropdow */}
+                                <li className='relative cursor-pointer group'>
+                                    <Link to="#" className='flex items-center gap-[2px] font-semibold text-gray-500 dark:hover:text-white py-2 hover:text-black'>
+                                        Quick Links
+                                        <span>
+                                            <FaCaretDown className="group-hover:rotate-180 duration-300" />
+                                        </span>
+                                    </Link>
+                                    <div className='absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white shadow-md dark:bg-gray-900 p-2 dark:text-white'>
+                                        <ul className='space-y-2'>
+                                            {DropdownLinks.map((data, index) => (
+                                                <li key={data.id || index}>
+                                                    <Link href={data.link} className='text-gray-500 dark:hover:text-white duration-200 p-2 hover:bg-primary/20 inline-block w-full rounded-md font-semibold'>
+                                                        {data.name}
+                                                    </Link>
+                                                </li>
+                                            ))
+                                            }
+                                        </ul>
+                                    </div>
                                 </li>
-                            ))}
-                            {/* dropdow */}
-                            <li className='relative cursor-pointer group'>
-                                <a href="#" className='flex items-center gap-[2px] font-semibold text-gray-500 dark:hover:text-white py-2 hover:text-black'>
-                                    Quick Links
-                                    <span>
-                                        <FaCaretDown className="group-hover:rotate-180 duration-300"/>
-                                    </span>    
-                                </a>
-                                <div className='absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white shadow-md dark:bg-gray-900 p-2 dark:text-white'>
-                                    <ul className='space-y-2'>
-                                        {DropdownLinks.map((data, index) => (
-                                            <li key={data.id || index}>
-                                                <a href={data.link} className='text-gray-500 dark:hover:text-white duration-200 p-2 hover:bg-primary/20 inline-block w-full rounded-md font-semibold'>
-                                                    {data.name}
-                                                </a>
-                                            </li>
-                                        ))
-                                        }
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div className='flex justify-between items-center gap-4'>
-                    {/* Search Bar Section */}
-                    <div className='relative group hidden sm:block'>
-                        <input type="text" placeholder='Search' className='search-bar'/>
+                    <div className='flex justify-between items-center gap-4'>
+                        {/* Search Bar Section */}
+                        <div className='relative group hidden sm:block'>
+                            <input type="text" placeholder='Search' className='search-bar' />
 
-                        <IoMdSearch className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200'/>
-                    </div>
-                    {/* Card section */}
-                    <button className='relative p-3' onClick={handleOrderPopup}>
-                        <FaCartShopping className='text-xl text-gray-600 dark:text-gray-400'/>
-                        <div className='w-4 h-4 bg-red-500 text-white rounded-full absolute top-0 right-0 flex items-center justify-center text-xs'>4</div>
-                    </button>
-                    {/* Dark Mode Togal */}
-                    <div>
-                        <DarkMode />
+                            <IoMdSearch className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200' />
+                        </div>
+                        {/* Card section */}
+                        <button className='relative p-3' onClick={handleOrderPopup}>
+                            <FaCartShopping className='text-xl text-gray-600 dark:text-gray-400' />
+                            <div className='w-4 h-4 bg-red-500 text-white rounded-full absolute top-0 right-0 flex items-center justify-center text-xs'>4</div>
+                        </button>
+                        {/* Dark Mode Togal */}
+                        <div>
+                            <DarkMode />
+                        </div>
+                        {/* Profile */}
+                        <Link>
+
+                            <div className='relative cursor-pointer group'>
+                                <Link to="#" className='flex items-center gap-[2px] font-semibold text-gray-500 dark:hover:text-white py-2 hover:text-black'>
+                                    <img
+                                        className="w-12 h-12 rounded-full mx-auto border-4 border-indigo-500 shadow"
+                                        src={user.profilePic}
+                                        alt="Profile"
+                                    />
+                                </Link>
+                                <div className='absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white shadow-md dark:bg-gray-900 p-2 dark:text-white right-1'>
+                                    <div className='space-y-2'>
+
+                                        <Link to="/registration">
+                                            <div className='text-gray-500 dark:hover:text-white duration-200 p-2 hover:bg-primary/20 inline-block w-full rounded-md font-semibold'>
+                                                Registration
+                                            </div>
+                                        </Link>
+                                    </div>
+
+                                    <Link to="/registration">
+                                        <div className='text-gray-500 dark:hover:text-white duration-200 p-2 hover:bg-primary/20 inline-block w-full rounded-md font-semibold'>
+                                            Login
+                                        </div>
+                                    </Link>
+
+                                    <Link to="/registration">
+                                        <div className='text-gray-500 dark:hover:text-white duration-200 p-2 hover:bg-primary/20 inline-block w-full rounded-md font-semibold'>
+                                            LogOut
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+                        </Link>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Navbar
+
+
+
